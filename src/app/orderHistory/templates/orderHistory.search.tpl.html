@@ -1,0 +1,56 @@
+<form name="OrderCloudOrderSearchForm">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Order ID</label>
+                <input type="text" class="form-control" ng-model="filters.OrderID" />
+            </div>
+            <div class="form-group">
+                <label>Status</label>
+                <select class="form-control" ng-model="filters.Status" ng-options="status.Value as status.Name for status in statuses"></select>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group" ng-if="usertype == 'admin'">
+                <label>From Company</label>
+                <input type="text" class="form-control" typeahead-editable="false" uib-typeahead="buyer.ID as buyer.Name for buyer in buyercompanies.Items | filter:$viewValue | limitTo:8" ng-model="filters.FromCompanyID" />
+            </div>
+            <div class="form-group" ng-if="usertype != 'admin'">
+                <label>Search</label>
+                <input type="text" class="form-control" ng-model="filters.searchTerm" />
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>From Date</label>
+                        <input uib-datepicker-popup is-open="fromDate.open" ng-click="fromDate.open = !fromDate.open" type="date" class="form-control" ng-model="filters.FromDate">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>To Date</label>
+                        <input uib-datepicker-popup is-open="toDate.open" ng-click="toDate.open = !toDate.open" type="date" class="form-control" ng-model="filters.ToDate">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-if="usertype == 'admin'">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Search</label>
+                <input type="search" class="form-control" ng-model="filters.searchTerm" />
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>From User Groups</label>
+                <input type="text" class="form-control" ng-model="tempValue" uib-typeahead="group as group.ID for group in usergroups" typeahead-on-select="onSelect($item, $model, $label); tempValue='' " typeahead-focus-first="false"/>
+                <div ng-repeat="name in userGroupList track by $index" ng-show="userGroupList.length > 0">
+                    {{name}} <span class="fa fa-remove" style="color:#9a2626" ng-click="removeGroup($index)"></span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>
