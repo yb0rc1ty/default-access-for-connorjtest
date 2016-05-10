@@ -1,0 +1,43 @@
+<article class="container-fluid">
+	<h3 class="page-header">Assignments for {{productAssignments.productName}}</h3>
+	<div class="well well-lg text-center" ng-if="!productAssignments.list.length">
+		<b>This product does not have any assignments for the active Buyer company.</b>
+	</div>
+	<section class="table-fixed-header" ng-if="productAssignments.list.length">
+		<div class="table-header-bg"></div>
+		<div class="table-container" ordercloud-infinite-scroll controlleras="productAssignments">
+			<table class="table table-hover table-striped">
+				<colgroup>
+					<col class="action-column"/>
+				</colgroup>
+				<thead>
+				<tr>
+					<th>
+					</th>
+					<th>
+						<div>Party ID</div>
+					</th>
+					<th>
+						<div>Standard Price Schedule</div>
+					</th>
+					<th>
+						<div>Replenishment Price Schedule</div>
+					</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr ng-repeat="assignment in productAssignments.list">
+					<td>
+						<button type="button" class="btn btn-default btn-block" uib-tooltip="Delete Assignment" tooltip-placement="right" ng-click="productAssignments.Delete(this)"><span class="text-danger"><i class="fa fa-trash text-danger"></i></span></button>
+					</td>
+					<td>{{assignment.UserID || assignment.UserGroupID || assignment.BuyerID}} <small class="text-muted" ng-if="!assignment.UserID && !assignment.UserGroupID">(Buyer)</small></td>
+					<td>{{assignment.StandardPriceScheduleID}}  <span class="text-muted" ng-if="!assignment.StandardPriceScheduleID">None</span></td>
+					<td>{{assignment.ReplenishmentPriceScheduleID}} <span class="text-muted" ng-if="!assignment.ReplenishmentPriceScheduleID">None</span></td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	</section>
+	<button type="button" class="btn btn-default" ui-sref="^"><i class="fa fa-arrow-left"></i> Back</button>
+	<button class="btn btn-success" ui-sref="^.createAssignment({productid:productAssignments.productID})"><i class="fa fa-plus-circle"></i> New Assignment</button>
+</article>

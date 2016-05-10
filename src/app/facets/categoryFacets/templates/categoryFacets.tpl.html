@@ -1,0 +1,40 @@
+<ui-view>
+    <article class="container-fluid">
+        <div class="col-sm-12">
+            <h3 class="page-header">
+                Category Facet Management
+            </h3>
+            <ordercloud-search servicename="Categories" controlleras="facetedCat"></ordercloud-search>
+            <section class="table-fixed-header" ng-if="facetedCat.list.Items.length">
+                <div class="table-header-bg"></div>
+                <div class="table-container" ordercloud-infinite-scroll servicename="Categories" controlleras="facetedCat">
+                    <table class="table table-hover">
+                        <colgroup>
+                            <col class="action-column"/>
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th>
+                                <div>ID</div>
+                            </th>
+                            <th>
+                                <div>Name</div>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="category in facetedCat.list.Items track by $index" ui-sref=".manage({categoryid:category.ID})">
+                            <td>{{category.ID}}</td>
+                            <td>{{category.Name}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <div class="well well-lg text-center" ng-show="!facetedCat.list.Items.length">
+                <b ng-if="!facetedCat.searching()">The selected buyer does not have any categories.</b>
+                <b ng-if="facetedCat.searching()"><i class="fa fa-search"></i> No categories match your search.</b>
+            </div>
+        </div>
+    </article>
+</ui-view>

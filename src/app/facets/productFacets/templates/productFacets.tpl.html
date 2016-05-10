@@ -1,0 +1,40 @@
+<ui-view>
+    <article class="container-fluid">
+        <div class="col-sm-12">
+            <h3 class="page-header">
+                Product Facet Management
+            </h3>
+            <ordercloud-search servicename="Products" controlleras="facetedProd"></ordercloud-search>
+            <section class="table-fixed-header" ng-if="facetedProd.list.Items.length">
+                <div class="table-header-bg"></div>
+                <div class="table-container" ordercloud-infinite-scroll servicename="Products" controlleras="facetedProd">
+                    <table class="table table-hover">
+                        <colgroup>
+                            <col class="action-column"/>
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th>
+                                <div>ID</div>
+                            </th>
+                            <th>
+                                <div>Name</div>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="product in facetedProd.list.Items track by $index" ui-sref=".manage({productid:product.ID})">
+                            <td>{{product.ID}}</td>
+                            <td>{{product.Name}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <div class="well well-lg text-center" ng-show="!facetedProd.list.Items.length">
+                <b ng-if="!facetedProd.searching()">The selected buyer does not have any products.</b>
+                <b ng-if="facetedProd.searching()"><i class="fa fa-search"></i> No products match your search.</b>
+            </div>
+        </div>
+    </article>
+</ui-view>
