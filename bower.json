@@ -1,0 +1,46 @@
+{
+  "name": "OrderCloud-Components",
+  "authors": [
+    "Four51"
+  ],
+  "description": "repo for managing ordercloud components that serve as a starting point for creating B2B applications on the Four51 OrderCloud platform.",
+  "main": "index",
+  "moduleType": [],
+  "keywords": [
+    "OrderCloud",
+    "Four51",
+    "AngularJS",
+    "Angular",
+    "B2B"
+  ],
+  "license": "MIT",
+  "homepage": "https://devcenter.ordercloud.io/home",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "angular-sanitize": "^1.5.0",
+    "angular-touch": "^1.5.0",
+    "angular-ui-router": "^0.2.17",
+    "angular-toastr": "^1.7.0",
+    "angular-ui-tree": "^2.15.0",
+    "angular-animate": "^1.5.0",
+    "angular-messages": "^1.5.0",
+    "angular-bootstrap": "^1.1.2",
+    "ordercloud-ng-sdk": "^1.0.1",
+    "OrderCloud-Angular-SDK": "ordercloud-angular-sdk#^1.0.9",
+    "angular-auto-validate": "^1.19.3",
+    "font-awesome": "^4.5.0"
+  },
+  "devDependencies": {
+    "angular-mocks": "^1.5.0"
+  },
+  "resolutions": {
+    "angular": "1.5.5"
+  }
+}
